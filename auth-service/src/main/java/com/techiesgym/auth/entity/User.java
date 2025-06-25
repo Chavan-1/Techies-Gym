@@ -1,14 +1,12 @@
 package com.techiesgym.auth.entity;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
-@Data
 @NoArgsConstructor
 @Builder
+@Data
 @Table(name = "users")
 public class User {
 	
@@ -19,6 +17,14 @@ public class User {
 	@Column(unique = true)
 	private String email;
 	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	private String password;
 	
 	@Enumerated(EnumType.STRING)
