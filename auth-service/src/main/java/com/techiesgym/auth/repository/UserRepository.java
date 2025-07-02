@@ -12,4 +12,6 @@ public interface UserRepository extends JpaRepository<User, Long>{
  * JpaRepository gives you CRUD operations out of the box. 
  * The findByEmail() method allows Spring Data JPA to auto-generate SQL like
 SELECT * FROM users WHERE email = ?
+
+Optional is a Java 8 feature to avoid NullPointerExceptions.
  **/
