@@ -39,7 +39,7 @@ public class SecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
 
 		http
-		.csrf(csrf -> csrf.disable())
+		.csrf(csrf -> csrf.disable()) 		//modern way to disable
 		.sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 		.authorizeHttpRequests(auth -> auth
 				.requestMatchers("/api/v1/auth/**").permitAll()  //allow register/login

@@ -4,11 +4,13 @@ import java.security.Key;
 import java.util.Date;
 import java.util.function.Function;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import com.techiesgym.auth.entity.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 
 @Service
@@ -21,7 +23,8 @@ public class JwtService {
 	
 	// Generates signing key from the secret
 	private Key getSigningKey() {
-		return Keys.hmacShaKeyFor(secretKey.getBytes());
+		byte[] keyBytes = Decoders.BASE64.decode(secretKey);
+		return Keys.hmacShaKeyFor(keyBytes);
 		
 	}
 	
@@ -61,9 +64,9 @@ public class JwtService {
 	}
 	
 	// Check if token is valid for a given user
-	public boolean isTokenValid(String token, User user) {
+	public boolean isTokenValid(String token, UserDetails userDetails) {
 		final String username = extractUsername(token); 
-		return (username.equals(user.getEmail())) && !isTokenExpired(token);
+		return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
 		
 	}
 	
