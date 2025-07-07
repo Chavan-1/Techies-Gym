@@ -30,7 +30,5 @@ public class CustomUserDetailsService {
 }
 
 /******Implements UserDetailsService — Spring Security calls this when authenticating.
-
 Loads your User by email.
-
 Builds a UserDetails object with username, password, and authorities.******/
